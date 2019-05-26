@@ -20,9 +20,6 @@ public class Controller {
 		register = new Register();
 		quantity = 1;
 	}
-	/**
-	 * initalizes a new sale
-	 */
 	public void startNewSale() {
 		// TODO Auto-generated method stub
 		sale = new Sale();
