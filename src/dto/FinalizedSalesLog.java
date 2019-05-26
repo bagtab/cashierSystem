@@ -1,8 +1,8 @@
 package dto;
 
 public class FinalizedSalesLog {
-	SaleDTO salesLog;
-	Payment payment;
+	private SaleDTO salesLog;
+	private Payment payment;
 	public FinalizedSalesLog(Payment inPayment, SaleDTO salesLog) {
 		this.salesLog = salesLog;
 		payment = inPayment;

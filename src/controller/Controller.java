@@ -15,7 +15,9 @@ public class Controller {
 	private Register register;
 	private Sale sale;
 	private int quantity;
-
+/**
+ * initializes controller with a new inventory and register.
+ */
 	public Controller() {
 		itemRegistry = new Inventory();
 		register = new Register();

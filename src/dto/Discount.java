@@ -1,10 +1,10 @@
 package dto;
 
 public class Discount {
-	double vat6;
-	double vat12;
-	double vat25;
-	double bigDiscount;
+	private double vat6;
+	private double vat12;
+	private double vat25;
+	private double bigDiscount;
 	public Discount(double vat6, double vat12, double vat25, double bigDiscount) {
 		this.vat6 = vat6;
 		this.vat12 = vat12;

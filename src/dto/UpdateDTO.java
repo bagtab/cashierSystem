@@ -1,9 +1,9 @@
 package dto;
 
 public class UpdateDTO {
-	QuantifiedItemDTO item;
-	double cost;
-	double vat;
+	private QuantifiedItemDTO item;
+	private double cost;
+	private double vat;
 
 	public UpdateDTO(QuantifiedItemDTO item, double cost, double vat) {
 		this.item = item;
