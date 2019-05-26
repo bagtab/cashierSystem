@@ -79,7 +79,7 @@ public class View {
 	public void PayForSale() throws IOException {
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = reader.readLine();
-		changeMachine.getChange(contr.payAndEndSale(Double.parseDouble(input)).getAmount());
+		changeMachine.getChange(contr.payAndEndSale(Double.parseDouble(input)));
 	}
 	/**
 	 * extracts the data part of the input String array
