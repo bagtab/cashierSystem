@@ -1,4 +1,4 @@
-	package controller;
+package controller;
 
 import dto.FinalizedSalesLog;
 import dto.ItemDTO;
@@ -15,39 +15,59 @@ public class Controller {
 	private Register register;
 	private Sale sale;
 	private int quantity;
+
 	public Controller() {
 		itemRegistry = new Inventory();
 		register = new Register();
 		quantity = 1;
 	}
+
 	/**
-	 * initalizes a new sale
+	 * Initializes a new sale
 	 */
 	public void startNewSale() {
-		// TODO Auto-generated method stub
 		sale = new Sale();
 	}
+
+	/**
+	 * prepares to add multiple items
+	 * 
+	 * @param quantity
+	 *            amount of scanned items
+	 */
 	public void scanManyItems(int quantity) {
-		// TODO Auto-generated method stub
 		this.quantity = quantity;
 	}
+
+	/**
+	 * @param itemID
+	 *            integer representation of an itemID
+	 * @return UpdateDTO consisting of last added item and current price
+	 */
 	public UpdateDTO scanItem(int itemID) {
 		QuantifiedItemDTO item = generateQuantifiedItem(itemID);
 		return sale.addItem(item);
 	}
-	public Payment payAndEndSale(double payment) {
+
+	/**
+	 * pays for the current sale and returns the change
+	 * 
+	 * @param payment
+	 *            money that customer pays for sale
+	 * @return Change to give to customer in a PaymentObject
+	 */
+	public double payAndEndSale(double payment) {
 		Payment inPayment = new Payment(payment);
 		SaleDTO salesLog = sale.getSaleDTO();
-		Payment change = new Payment(inPayment.getAmount() - salesLog.getCost());
 		FinalizedSalesLog finalSalesLog = new FinalizedSalesLog(inPayment, salesLog);
 		register.endSale(finalSalesLog);
-		return change;
+		return inPayment.getAmount() - getCost();
 	}
-	
-	
+
 	/**
 	 * @param itemID
-	 * @return
+	 *            integer identification for a specific item
+	 * @return QuantifiedItem with quantity of item and ItemDTO
 	 */
 	private QuantifiedItemDTO generateQuantifiedItem(int itemID) {
 		ItemDTO itemData = itemRegistry.findItem(itemID);
@@ -55,7 +75,24 @@ public class Controller {
 		quantity = 1;
 		return item;
 	}
+
+	/**
+	 * applies the discount and returns new cost
+	 * 
+	 * @param customerID
+	 * @return cost after discounts
+	 */
 	public double applyDiscount(String customerID) {
-		return sale.applyDiscount(customerID);
+		sale.applyDiscount(customerID);
+		return getCost();
+	}
+
+	/**
+	 * returns the current cost
+	 * 
+	 * @return cost of current sale
+	 */
+	private double getCost() {
+		return sale.getSaleDTO().getCost();
 	}
 }
