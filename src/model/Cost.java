@@ -1,13 +1,18 @@
 package model;
 
 import dto.Discount;
+import dto.ItemListDTO;
 import dto.QuantifiedItemDTO;
+import dto.SaleDTO;
+import dto.UpdateDTO;
+import integration.DiscountHandler;
 
 public class Cost {
 	private double cost6;
 	private double cost12;
 	private double cost25;
 	private double discount;
+	private DiscountHandler discounter;
 	/**
 	 * increases the cost and vat with values from an added item
 	 * @param item - DTO that stores the quantity,cost and vat used
@@ -17,9 +22,11 @@ public class Cost {
 		cost12 = 0;
 		cost25 = 0;
 		discount = 0;
+		discounter = new DiscountHandler();
 	}
-	public void addCost(QuantifiedItemDTO item) {
+	public UpdateDTO addCost(QuantifiedItemDTO item) {
 		calculateNewCost(item);
+		return new UpdateDTO(item, getCost(), getVat());
 	}
 	private void calculateNewCost(QuantifiedItemDTO item) {
 		switch(item.getVatRate()) {
@@ -34,7 +41,15 @@ public class Cost {
 		}
 	}
 	/**
-	 * 
+	 * generates a discount based upon customerID and items, and then aplies the discount to the cost
+	 * @param items
+	 * @param customerID
+	 */
+	public void applyDiscount(ItemListDTO items, String customerID) {
+		applyDiscount(discounter.generateDiscount(items, customerID));
+	}
+	/**
+	 * applies discount to the cost
 	 * @param discount
 	 */
 	public void applyDiscount(Discount discount) {
@@ -64,5 +79,13 @@ public class Cost {
 	 */
 	public double getDiscount() {
 		return discount;
+	}
+	/**
+	 * generates a SaleDTO for current sale
+	 * @param itemsDTO
+	 * @return
+	 */
+	public SaleDTO getSalesDTO(ItemListDTO itemsDTO) {
+		return new SaleDTO(getCost(), getVat(), getDiscount(), itemsDTO);
 	}
 }

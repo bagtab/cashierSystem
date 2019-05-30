@@ -7,6 +7,7 @@ import dto.QuantifiedItemDTO;
 import dto.SaleDTO;
 import dto.UpdateDTO;
 import integration.Inventory;
+import model.Cost;
 import model.Register;
 import model.Sale;
 
@@ -15,6 +16,7 @@ public class Controller {
 	private Register register;
 	private Sale sale;
 	private int quantity;
+	private Cost cost;
 /**
  * initializes controller with a new inventory and register.
  */
@@ -22,6 +24,7 @@ public class Controller {
 		itemRegistry = new Inventory();
 		register = new Register();
 		quantity = 1;
+		cost = new Cost();
 	}
 
 	/**
@@ -48,7 +51,8 @@ public class Controller {
 	 */
 	public UpdateDTO scanItem(int itemID) {
 		QuantifiedItemDTO item = generateQuantifiedItem(itemID);
-		return sale.addItem(item);
+		sale.addItem(item);
+		return cost.addCost(item);
 	}
 
 	/**
@@ -60,10 +64,14 @@ public class Controller {
 	 */
 	public double payAndEndSale(double payment) {
 		Payment inPayment = new Payment(payment);
-		SaleDTO salesLog = sale.getSaleDTO();
-		FinalizedSalesLog finalSalesLog = new FinalizedSalesLog(inPayment, salesLog);
+
+		FinalizedSalesLog finalSalesLog = new FinalizedSalesLog(inPayment, getSalesDTO());
 		register.endSale(finalSalesLog);
 		return inPayment.getAmount() - getCost();
+	}
+
+	private SaleDTO getSalesDTO() {
+		return cost.getSalesDTO(sale.getItemsDTO());
 	}
 
 	/**
@@ -85,7 +93,7 @@ public class Controller {
 	 * @return cost after discounts
 	 */
 	public double applyDiscount(String customerID) {
-		sale.applyDiscount(customerID);
+		cost.applyDiscount(sale.getItemsDTO(), customerID);
 		return getCost();
 	}
 
@@ -95,6 +103,6 @@ public class Controller {
 	 * @return cost of current sale
 	 */
 	private double getCost() {
-		return sale.getSaleDTO().getCost();
+		return cost.getCost();
 	}
 }

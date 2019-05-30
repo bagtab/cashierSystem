@@ -98,7 +98,6 @@ public class ChangeMachine {
 	 */
 	private void returnCash(String textOfMoney) {
 		JFrame cash = new JFrame("change");
-		cash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cash.setLayout(new BorderLayout());
 		cash.setVisible(true);
 		JTextArea field = new JTextArea(new String(textOfMoney));

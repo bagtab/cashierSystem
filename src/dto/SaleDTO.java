@@ -1,14 +1,11 @@
 package dto;
-
-import java.util.LinkedList;
-
 public class SaleDTO {
-	double cost;
-	double vat;
-	double discount;
-	LinkedList<QuantifiedItemDTO> items;
+	private double cost;
+	private double vat;
+	private double discount;
+	private ItemListDTO items;
 
-	public SaleDTO(double cost, double vat, double discount, LinkedList<QuantifiedItemDTO> items) {
+	public SaleDTO(double cost, double vat, double discount, ItemListDTO items) {
 		this.cost = cost;
 		this.vat = vat;
 		this.discount = discount;
@@ -39,7 +36,7 @@ public class SaleDTO {
 	/**
 	 * @return the items
 	 */
-	public LinkedList<QuantifiedItemDTO> getItems() {
+	public ItemListDTO getItems() {
 		return items;
 	}
 

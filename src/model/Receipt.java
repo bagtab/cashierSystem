@@ -2,6 +2,7 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 import dto.FinalizedSalesLog;
 import dto.QuantifiedItemDTO;
@@ -77,7 +78,9 @@ public class Receipt {
 	 * @param finalSalesLog
 	 */
 	private void generateItemList(FinalizedSalesLog finalSalesLog) {
-		for(QuantifiedItemDTO item :finalSalesLog.getSalesLog().getItems()) {
+		Iterator<QuantifiedItemDTO> itemIterator =finalSalesLog.getSalesLog().getItems().getIterator();
+		while(itemIterator.hasNext()){
+			QuantifiedItemDTO item  = itemIterator.next();
 			generateItem(item);
 			if(item.getQuantity() > 1) {
 				generateQuantity(item);	

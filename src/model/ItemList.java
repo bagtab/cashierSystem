@@ -2,6 +2,7 @@ package model;
 
 import java.util.LinkedList;
 
+import dto.ItemListDTO;
 import dto.QuantifiedItemDTO;
 
 public class ItemList {
@@ -25,23 +26,26 @@ public class ItemList {
 		}
 	}
 	private void increaseQuantity(QuantifiedItem item) {
-		items.get(items.indexOf(item)).increaseQuantity(item.getQuantity());
+		QuantifiedItem itemInList = items.get(items.indexOf(item));
+		int currQuantity = itemInList.getQuantity();
+		itemInList.increaseQuantity(item.getQuantity());
+		item.increaseQuantity(currQuantity);
 	}
 	private void addNewItem(QuantifiedItem item) {
 		items.add(item);
 	}
-	public LinkedList<QuantifiedItemDTO> getItems() {
+	public ItemListDTO getItems() {
 		// TODO Auto-generated method stub
 		return generateListOfDTO();
 	}
-	private LinkedList<QuantifiedItemDTO> generateListOfDTO() {
+	private ItemListDTO generateListOfDTO() {
 		LinkedList<QuantifiedItemDTO> itemsDTO = new LinkedList<QuantifiedItemDTO>();
 		for(QuantifiedItem itemToConvert:items) {
 			itemsDTO.add(new QuantifiedItemDTO(itemToConvert.getItemData(), itemToConvert.getQuantity()));
 			
 		}
 		System.out.print(itemsDTO.getFirst().getPrice());
-		return itemsDTO;
+		return new ItemListDTO(itemsDTO);
 	}
 	
 }
