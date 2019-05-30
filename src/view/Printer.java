@@ -21,7 +21,6 @@ public class Printer {
 		JTextArea field = new JTextArea(new String(textToPrint));
 		field.setEditable(false);
 		receipt.add(field, BorderLayout.NORTH);
-		receipt.setSize(240, 400);
-		textToPrint = "aaaa";
+		receipt.setSize(240, 400);	
 	}
 }

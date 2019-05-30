@@ -54,9 +54,7 @@ public class Sale {
 	 */
 	private void increaseQuantity(QuantifiedItem item) {
 		QuantifiedItem itemInList = items.get(items.indexOf(item));
-		int currQuantity = itemInList.getQuantity();
-		itemInList.increaseQuantity(item.getQuantity());
-		item.increaseQuantity(currQuantity);
+		itemInList.increaseQuantity(item);
 	}
 
 	/**
@@ -89,7 +87,6 @@ public class Sale {
 			itemsDTO.add(new QuantifiedItemDTO(itemToConvert.getItemData(), itemToConvert.getQuantity()));
 
 		}
-		System.out.print(itemsDTO.getFirst().getPrice());
 		return new ItemListDTO(itemsDTO);
 	}
 }
