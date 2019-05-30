@@ -10,9 +10,11 @@ public class Accounting {
 	public Accounting() {
 		recordedSalesLogs = new LinkedList<FinalizedSalesLog>();
 	}
-
+	/**
+	 * logs the final saleslog
+	 * @param finalSalesLog log that describes the sale
+	 */
 	public void recordSalesLog(FinalizedSalesLog finalSalesLog) {
 		recordedSalesLogs.add(finalSalesLog);
 	}
-
 }

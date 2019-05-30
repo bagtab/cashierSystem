@@ -12,11 +12,10 @@ public class DiscountHandler {
 	 * purchased, quantity of items and total cost
 	 * 
 	 * @param itemListDTO
-	 *            - SaleDTO, data used to calculate discount
+	 *            SaleDTO, data used to calculate discount
 	 * @param customerID
-	 *            - String, used to check customer qualification for certain
-	 *            discounts
-	 * @return - double, the calculated discount
+	 *            String, used to check customer qualification for certain discounts
+	 * @return double, the calculated discount
 	 */
 	public Discount generateDiscount(ItemListDTO itemListDTO, String customerID) {
 		double cost = 0;
@@ -31,8 +30,15 @@ public class DiscountHandler {
 		return new Discount(0, 0, 0, 0);
 	}
 
-	private double getCost(QuantifiedItemDTO next) {
-		return next.getQuantity() * next.getPrice();
+	/**
+	 * returns the cost of the quantified item
+	 * 
+	 * @param item
+	 *            item to calculate cost of
+	 * @return double cost of item
+	 */
+	private double getCost(QuantifiedItemDTO item) {
+		return item.getQuantity() * item.getPrice();
 	}
 
 }

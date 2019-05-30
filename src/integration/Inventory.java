@@ -4,14 +4,17 @@ import java.util.HashMap;
 
 import dto.ItemDTO;
 
-public class Inventory {	
+public class Inventory {
 	private HashMap<Integer, ItemDTO> database;
+
 	public Inventory() {
 		database = new HashMap<Integer, ItemDTO>();
 		init();
 	}
+
 	/**
 	 * returns matching itemDTO to matching itemID
+	 * 
 	 * @param itemID
 	 * @return ItemDTO
 	 */
@@ -19,6 +22,7 @@ public class Inventory {
 		ItemDTO item = database.get(itemID);
 		return item;
 	}
+
 	/**
 	 * generates an existing database used to simulate the program
 	 */
@@ -30,7 +34,7 @@ public class Inventory {
 		items[3] = new ItemDTO("ciggaretes", 60, 25);
 		items[4] = new ItemDTO("potatoes", 0.01, 12);
 		items[5] = new ItemDTO("carrots", 0.02, 12);
-		for(int i = 0; i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			database.put(i, items[i]);
 		}
 	}
