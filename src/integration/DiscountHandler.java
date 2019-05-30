@@ -22,7 +22,7 @@ public class DiscountHandler {
 
 			return new Discount(0, 0, 0,cost*0.10);
 		}
-		return new Discount(0, 0, 0, cost*0.10);
+		return new Discount(0, 0, 0, 0);
 	}
 
 	private double getCost(QuantifiedItemDTO next) {

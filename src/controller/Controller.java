@@ -11,15 +11,23 @@ import model.Cost;
 import model.Register;
 import model.Sale;
 
+/**
+ * Controller is used for communication between the user interface and the
+ * model.
+ * 
+ * @author mrjoh
+ *
+ */
 public class Controller {
 	private Inventory itemRegistry;
 	private Register register;
 	private Sale sale;
 	private int quantity;
 	private Cost cost;
-/**
- * initializes controller with a new inventory and register.
- */
+
+	/**
+	 * initializes controller with a new inventory and register.
+	 */
 	public Controller() {
 		itemRegistry = new Inventory();
 		register = new Register();
@@ -70,11 +78,19 @@ public class Controller {
 		return inPayment.getAmount() - getCost();
 	}
 
+	/**
+	 * creates and returns a salesDTO
+	 * 
+	 * @return SaleDTO
+	 */
 	private SaleDTO getSalesDTO() {
-		return cost.getSalesDTO(sale.getItemsDTO());
+		return cost.getSalesDTO(sale.getItems());
 	}
 
 	/**
+	 * generates and returns a QuantifiedItemDTO based upon itemID and saved
+	 * quantity
+	 * 
 	 * @param itemID
 	 *            integer identification for a specific item
 	 * @return QuantifiedItem with quantity of item and ItemDTO
@@ -93,7 +109,7 @@ public class Controller {
 	 * @return cost after discounts
 	 */
 	public double applyDiscount(String customerID) {
-		cost.applyDiscount(sale.getItemsDTO(), customerID);
+		cost.applyDiscount(sale.getItems(), customerID);
 		return getCost();
 	}
 

@@ -1,10 +1,24 @@
 package dto;
-
+/**
+ * an itemDTO describing an item
+ * @author mrjoh
+ *
+ */
 public class ItemDTO {
-	private String description;
-	private double price;
-	private int vatRate;
+	protected String description;
+	protected double price;
+	protected int vatRate;
 
+	/**
+	 * initializes ItemDTO
+	 * 
+	 * @param description
+	 *            string describing the item
+	 * @param price
+	 *            double describing the price
+	 * @param vatRate
+	 *            int describing the vatrate
+	 */
 	public ItemDTO(String description, double price, int vatRate) {
 		this.description = description;
 		this.price = price;
@@ -31,7 +45,7 @@ public class ItemDTO {
 	public int getVatRate() {
 		return vatRate;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof ItemDTO) {
@@ -39,8 +53,12 @@ public class ItemDTO {
 		}
 		return false;
 	}
-
+	/**
+	 * checks
+	 * @param item
+	 * @return
+	 */
 	private boolean equals(ItemDTO item) {
-		return getDescription() == item.getDescription();
+		return getDescription() == item.getDescription() && getPrice() == item.getPrice();
 	}
 }

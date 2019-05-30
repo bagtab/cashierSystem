@@ -4,7 +4,11 @@ import dto.FinalizedSalesLog;
 import dto.Payment;
 import integration.Accounting;
 import integration.Printer;
-
+/**
+ * Register finalizes the sale and stores the amount of money in the register.
+ * @author mrjoh
+ *
+ */
 public class Register {
 	private Printer printer;
 	private Accounting accounting;
@@ -17,14 +21,19 @@ public class Register {
 		accounting = new Accounting();
 	}
 	public void endSale(FinalizedSalesLog finalSalesLog) {
-		// TODO Auto-generated method stub
 		addMoneyToRegistry(finalSalesLog.getPayment());
 		Receipt receipt = new Receipt(finalSalesLog, shopName, address);
 		printer.print(receipt);
 		accounting.recordSalesLog(finalSalesLog);
 	}
 	private void addMoneyToRegistry(Payment payment) {
-		// TODO Auto-generated method stub
 		presentMoney += payment.getAmount();
+	}
+	/**
+	 * returns the money in the register
+	 * @return presentMoney
+	 */
+	public double getPresentMoney() {
+		return presentMoney;
 	}
 }
