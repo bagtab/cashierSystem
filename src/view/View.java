@@ -5,19 +5,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import controller.Controller;
+import dto.ReceiptAndReturn;
 /**
  * the main class used for the cashier to communicate with the program
  * @author Linus Johannisson
  *
  */
 public class View {
-	Controller contr;
-	Display display;
-	ChangeMachine changeMachine;
+	private Controller contr;
+	private Display display;
+	private ChangeMachine changeMachine;
+	private Printer printer;
 	public View(Controller contr) {
 		this.contr = contr;
 		display = new Display();
 		changeMachine = new ChangeMachine();
+		printer = new Printer();
 	}
 	
 	/**
@@ -79,7 +82,9 @@ public class View {
 	public void PayForSale() throws IOException {
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = reader.readLine();
-		changeMachine.getChange(contr.payAndEndSale(Double.parseDouble(input)));
+		ReceiptAndReturn receiptAndReturn = contr.payAndEndSale(Double.parseDouble(input));
+		printer.print(receiptAndReturn.getReceipt());
+		changeMachine.getChange(receiptAndReturn.getCashReturn());
 	}
 	/**
 	 * extracts the data part of the input String array

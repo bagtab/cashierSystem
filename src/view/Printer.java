@@ -1,4 +1,4 @@
-package integration;
+package view;
 
 import model.Receipt;
 import java.awt.BorderLayout;
@@ -16,7 +16,6 @@ public class Printer {
  */
 	private void printOut() {
 		JFrame receipt = new JFrame("receipt");
-		receipt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		receipt.setLayout(new BorderLayout());
 		receipt.setVisible(true);
 		JTextArea field = new JTextArea(new String(textToPrint));

@@ -4,6 +4,7 @@ import dto.FinalizedSalesLog;
 import dto.ItemDTO;
 import dto.Payment;
 import dto.QuantifiedItemDTO;
+import dto.ReceiptAndReturn;
 import dto.SaleDTO;
 import dto.UpdateDTO;
 import integration.Inventory;
@@ -70,12 +71,12 @@ public class Controller {
 	 *            money that customer pays for sale
 	 * @return Change to give to customer in a PaymentObject
 	 */
-	public double payAndEndSale(double payment) {
+	public ReceiptAndReturn payAndEndSale(double payment) {
 		Payment inPayment = new Payment(payment);
 
 		FinalizedSalesLog finalSalesLog = new FinalizedSalesLog(inPayment, getSalesDTO());
-		register.endSale(finalSalesLog);
-		return inPayment.getAmount() - getCost();
+		ReceiptAndReturn receiptAndReturn = new ReceiptAndReturn(register.endSale(finalSalesLog),inPayment.getAmount() - getCost());
+		return receiptAndReturn;
 	}
 
 	/**

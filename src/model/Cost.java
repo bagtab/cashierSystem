@@ -13,9 +13,12 @@ public class Cost {
 	private double cost25;
 	private double discount;
 	private DiscountHandler discounter;
+
 	/**
 	 * increases the cost and vat with values from an added item
-	 * @param item - DTO that stores the quantity,cost and vat used
+	 * 
+	 * @param item
+	 *            - DTO that stores the quantity,cost and vat used
 	 */
 	public Cost() {
 		cost6 = 0;
@@ -24,40 +27,48 @@ public class Cost {
 		discount = 0;
 		discounter = new DiscountHandler();
 	}
+
 	public UpdateDTO addCost(QuantifiedItemDTO item) {
 		calculateNewCost(item);
 		return new UpdateDTO(item, getCost(), getVat());
 	}
+
 	private void calculateNewCost(QuantifiedItemDTO item) {
-		switch(item.getVatRate()) {
+		switch (item.getVatRate()) {
 		case 6:
-			cost6+= item.getPrice()*item.getQuantity();
+			cost6 += item.getPrice() * item.getQuantity();
 			break;
 		case 12:
-			cost12+= item.getPrice()*item.getQuantity();
+			cost12 += item.getPrice() * item.getQuantity();
 			break;
 		case 25:
-			cost25+= item.getPrice()*item.getQuantity();
+			cost25 += item.getPrice() * item.getQuantity();
 		}
 	}
+
 	/**
-	 * generates a discount based upon customerID and items, and then aplies the discount to the cost
+	 * generates a discount based upon customerID and items, and then aplies the
+	 * discount to the cost
+	 * 
 	 * @param items
 	 * @param customerID
 	 */
 	public void applyDiscount(ItemListDTO items, String customerID) {
 		applyDiscount(discounter.generateDiscount(items, customerID));
 	}
+
 	/**
 	 * applies discount to the cost
+	 * 
 	 * @param discount
 	 */
 	public void applyDiscount(Discount discount) {
 		double costBefore = getCost();
-		cost6-= discount.getDiscountVat6() + discount.getBigDiscount()*cost6/costBefore;
-		cost12-= discount.getDiscountVat12()+ discount.getBigDiscount()*cost12/costBefore;
-		cost25-= discount.getDiscountVat25() + discount.getBigDiscount()*cost25/costBefore;
-		this.discount = discount.getDiscountVat6() + discount.getDiscountVat12() + discount.getDiscountVat25() + discount.getBigDiscount();
+		cost6 -= discount.getDiscountVat6() + discount.getBigDiscount() * cost6 / costBefore;
+		cost12 -= discount.getDiscountVat12() + discount.getBigDiscount() * cost12 / costBefore;
+		cost25 -= discount.getDiscountVat25() + discount.getBigDiscount() * cost25 / costBefore;
+		this.discount = discount.getDiscountVat6() + discount.getDiscountVat12() + discount.getDiscountVat25()
+				+ discount.getBigDiscount();
 	}
 
 	/**
@@ -71,7 +82,7 @@ public class Cost {
 	 * @return the vat
 	 */
 	public double getVat() {
-		return cost6*0.06 + cost12*0.12 + cost25*0.25;
+		return cost6 * 0.06 + cost12 * 0.12 + cost25 * 0.25;
 	}
 
 	/**
@@ -80,8 +91,10 @@ public class Cost {
 	public double getDiscount() {
 		return discount;
 	}
+
 	/**
 	 * generates a SaleDTO for current sale
+	 * 
 	 * @param itemsDTO
 	 * @return
 	 */

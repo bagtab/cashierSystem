@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
- * a machine that tells that gives the cashier the change to give to the customer.
+ * a machine that tells that gives the cashier the change to give to the
+ * customer.
  * 
  * @author Linus Johannisson
  */

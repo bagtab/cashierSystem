@@ -1,7 +1,9 @@
 package dto;
+
 /**
  * an itemDTO describing an item
- * @author mrjoh
+ * 
+ * @author Linus Johannisson
  *
  */
 public class ItemDTO {
@@ -54,9 +56,9 @@ public class ItemDTO {
 		return false;
 	}
 	/**
-	 * checks
+	 * returns if item is equal to this
 	 * @param item
-	 * @return
+	 * @return <true> if price and description match, else <false>
 	 */
 	private boolean equals(ItemDTO item) {
 		return getDescription() == item.getDescription() && getPrice() == item.getPrice();

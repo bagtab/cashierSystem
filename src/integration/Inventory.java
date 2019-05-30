@@ -10,14 +10,17 @@ public class Inventory {
 		database = new HashMap<Integer, ItemDTO>();
 		init();
 	}
-	
+	/**
+	 * returns matching itemDTO to matching itemID
+	 * @param itemID
+	 * @return ItemDTO
+	 */
 	public ItemDTO findItem(int itemID) {
-		// TODO Auto-generated method stub
 		ItemDTO item = database.get(itemID);
 		return item;
 	}
 	/**
-	 * generates an existing databse used to test the program
+	 * generates an existing database used to simulate the program
 	 */
 	private void init() {
 		ItemDTO[] items = new ItemDTO[6];
