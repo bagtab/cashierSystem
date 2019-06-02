@@ -40,5 +40,4 @@ public class DiscountHandler {
 	private double getCost(QuantifiedItemDTO item) {
 		return item.getQuantity() * item.getPrice();
 	}
-
 }

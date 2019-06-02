@@ -6,16 +6,21 @@ import controller.Controller;
 import view.View;
 
 public class Main {
+	/**
+	 * initializes the program and starts the loop of scanning items
+	 * @param args not used, standardized input for main with console testing
+	 */
 	public static void main(String[] args) {
 		Controller contr = new Controller();
 		View view = new View(contr);
-		view.startNewSale();
 		try {
-			view.scanItems();
-			view.checkForDiscount();
-			view.PayForSale();
+			while(true) {
+				view.startNewSale();
+				view.scanItems();
+				view.checkForDiscount();
+				view.PayForSale();
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
