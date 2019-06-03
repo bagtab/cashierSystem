@@ -14,10 +14,12 @@ public class Display {
 	private String displayedText;
 	private UpdateDTO lastUpdate;
 	private JTextArea textField;
-
+	/**
+	 * initializes a display
+	 */
 	public Display() {
 		display = new JFrame("customerDisplay");
-		displayedText = "v‰lkommen!";
+		displayedText = "v√§lkommen!";
 		display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		display.setLayout(new BorderLayout());
 		display.setVisible(true);
