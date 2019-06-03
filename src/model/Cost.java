@@ -15,10 +15,7 @@ public class Cost {
 	private DiscountHandler discounter;
 
 	/**
-	 * increases the cost and vat with values from an added item
-	 * 
-	 * @param item
-	 *            - DTO that stores the quantity,cost and vat used
+	 * initializes a new Cost object
 	 */
 	public Cost() {
 		cost6 = 0;
