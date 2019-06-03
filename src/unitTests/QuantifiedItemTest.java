@@ -11,6 +11,9 @@ import model.QuantifiedItem;
 
 class QuantifiedItemTest {
 	private ItemDTO[]items = new ItemDTO[5];
+	/**
+	 * setup before each test
+	 */
 	@BeforeEach
 	void setup() {
 		items[0] = new ItemDTO("ball", 20, 6);
@@ -19,6 +22,9 @@ class QuantifiedItemTest {
 		items[3] = new ItemDTO("ball", 20, 12);
 		items[4] = new ItemDTO("ball", 20, 6);
 	}
+	/**
+	 * tests equals function with different values
+	 */
 	@Test
 	void testEqual() {
 		QuantifiedItem item = new QuantifiedItem(new QuantifiedItemDTO(items[0], 4));
@@ -38,6 +44,9 @@ class QuantifiedItemTest {
 		comparedItem = new QuantifiedItem(new QuantifiedItemDTO(items[3], 4));
 		assertNotEquals(item, comparedItem,"different vat gave match");	
 	}
+	/**
+	 * tests increase quantity, both with integer and QuantifiedItem
+	 */
 	@Test
 	void testIncreseQauntity() {
 		QuantifiedItem item = new QuantifiedItem(new QuantifiedItemDTO(items[0], 4));
