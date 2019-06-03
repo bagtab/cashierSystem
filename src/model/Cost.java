@@ -114,7 +114,7 @@ public class Cost {
 	 * generates a SaleDTO for current sale
 	 * 
 	 * @param itemsDTO List of QuantifiedItemDTOs in current sale
-	 * @return
+	 * @return DTO of Sale
 	 */
 	public SaleDTO getSalesDTO(ItemListDTO itemsDTO) {
 		return new SaleDTO(getCost(), getVat(), getDiscount(), itemsDTO);
