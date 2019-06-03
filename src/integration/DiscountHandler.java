@@ -19,13 +19,16 @@ public class DiscountHandler {
 	 */
 	public Discount generateDiscount(ItemListDTO itemListDTO, String customerID) {
 		double cost = 0;
-		Iterator<QuantifiedItemDTO> iterator = itemListDTO.getIterator();
-		while (iterator.hasNext()) {
-			cost += getCost(iterator.next());
+		if(itemListDTO != null) {
+			Iterator<QuantifiedItemDTO> iterator = itemListDTO.getIterator();
+			while (iterator.hasNext()) {
+				cost += getCost(iterator.next());
+			}
 		}
-		if (customerID.equals("Joe")) {
-
-			return new Discount(0, 0, 0, cost * 0.10);
+		if(customerID != null) {
+			if (customerID.equals("Joe")) {
+				return new Discount(0, 0, 0, cost * 0.10);
+			}
 		}
 		return new Discount(0, 0, 0, 0);
 	}

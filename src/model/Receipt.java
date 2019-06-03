@@ -9,10 +9,19 @@ import dto.QuantifiedItemDTO;
 
 public class Receipt {
 	private String receiptText;
+	/**
+	 * creates a new Receipt in text form
+	 * @param finalSalesLog DTO containing SalesLog and Payment
+	 * @param shopName name of shop
+	 * @param address address of shop
+	 */
 	public Receipt(FinalizedSalesLog finalSalesLog, String shopName, String address) {
 		generateStartLine(shopName, address);
 		generateReceipt(finalSalesLog);
 	}
+	/**
+	 * @return receiptText describing the text on the receipt
+	 */
 	public String getText() {
 		return receiptText;
 	}
@@ -55,14 +64,14 @@ public class Receipt {
 	 * @return
 	 */
 	private String generateTotal(FinalizedSalesLog finalSalesLog) {
-		return "total" + addSpaces(20) + finalSalesLog.getSalesLog().getCost();
+		return "total" + addSpaces(20) + roundOf(finalSalesLog.getSalesLog().getCost());
 	}
 	/**
 	 * @param finalSalesLog
 	 * @return
 	 */
 	private String generateDiscount(FinalizedSalesLog finalSalesLog) {
-		return "dicounts" + addSpaces(17) + finalSalesLog.getSalesLog().getDiscount();
+		return "dicounts" + addSpaces(17) + roundOf(finalSalesLog.getSalesLog().getDiscount());
 	}
 	/**
 	 * @param finalSalesLog
@@ -72,7 +81,7 @@ public class Receipt {
 		return "plain total" + addSpaces(14) + roundOf(finalSalesLog.getSalesLog().getCost() + finalSalesLog.getSalesLog().getDiscount());
 	}
 	private double roundOf(double val) {
-		return Math.round(100*val)/100;
+		return (Math.round(100*val))/100;
 	}
 	/**
 	 * @param finalSalesLog

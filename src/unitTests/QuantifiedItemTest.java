@@ -22,6 +22,11 @@ class QuantifiedItemTest {
 	@Test
 	void testEqual() {
 		QuantifiedItem item = new QuantifiedItem(new QuantifiedItemDTO(items[0], 4));
+		try{
+			assertNotEquals(item, null,"Comparing to a Null object gives true");
+		}catch(NullPointerException exception){
+			fail("threw excepton when compared to null item");
+		}
 		QuantifiedItem comparedItem = new QuantifiedItem(new QuantifiedItemDTO(items[0], 3));
 		assertEquals(item, comparedItem,"missmatching quantity gave mismatch");
 		comparedItem = new QuantifiedItem(new QuantifiedItemDTO(items[4], 4));

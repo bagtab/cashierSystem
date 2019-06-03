@@ -78,7 +78,7 @@ public class Display {
 	 * @param itemToDisplay
 	 */
 	private void generateQuantity(QuantifiedItemDTO itemToDisplay) {
-		addText(itemToDisplay.getQuantity() + " st x " + itemToDisplay.getPrice());
+		addText(itemToDisplay.getQuantity() + " st x " + roundOf(itemToDisplay.getPrice()));
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Display {
 	 * @param updateInfo
 	 */
 	private void generateTotal(UpdateDTO updateInfo) {
-		addText("total" + addSpaces(20) + updateInfo.getCost());
+		addText("total" + addSpaces(20) + roundOf(updateInfo.getCost()));
 	}
 	/**
 	 * appends addedText to displayedText
@@ -107,5 +107,13 @@ public class Display {
 			amountOfSpaces--;
 		}
 		return spaces;
+	}
+/**
+ * rounds of val to 2 decimals
+ * @param val vaule to be rounded off
+ * @return rounded version of val
+ */
+	private double roundOf(double val) {
+		return (Math.round(100*val))/100;
 	}
 }

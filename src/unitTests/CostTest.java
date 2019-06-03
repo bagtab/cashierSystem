@@ -2,7 +2,7 @@ package unitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dto.Discount;
@@ -13,7 +13,7 @@ import model.Cost;
 class CostTest {
 	Cost cost = new Cost();
 
-	@Before
+	@BeforeEach
 	void before() {
 		cost = new Cost();
 	}
@@ -36,8 +36,17 @@ class CostTest {
 		fill();
 		cost.applyDiscount(new Discount(0, 0, 0, 100));
 		assertEquals(cost.getCost(), 129);
-		assertEquals(cost.getVat(), 23.71572052401747);
+		assertEquals(cost.getVat(), 23.71572052401747);//is rounded in display
 		assertEquals(cost.getDiscount(), 100);
+		
+	}
+	@Test
+	void testWithNullInput() {
+		fill();
+		cost.applyDiscount(null, null);
+		assertEquals(cost.getCost(), 229);
+		assertEquals(cost.getVat(), 42.1);
+		assertEquals(cost.getDiscount(), 0);
 		
 	}
 	@Test
