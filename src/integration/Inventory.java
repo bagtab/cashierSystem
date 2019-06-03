@@ -6,7 +6,9 @@ import dto.ItemDTO;
 
 public class Inventory {
 	private HashMap<Integer, ItemDTO> database;
-
+	/**
+	 * initializes a new inventory
+	 */
 	public Inventory() {
 		database = new HashMap<Integer, ItemDTO>();
 		init();
