@@ -5,6 +5,13 @@ public class Discount {
 	private double vat12;
 	private double vat25;
 	private double bigDiscount;
+	/**
+	 * Creates a discount
+	 * @param bigDiscount percentage discount applied to the price
+	 * @param vat25 discount on vat25 values
+	 * @param vat12 discount on vat12 values
+	 * @param vat6 discount on vat6 values
+	 */
 	public Discount(double vat6, double vat12, double vat25, double bigDiscount) {
 		this.vat6 = vat6;
 		this.vat12 = vat12;
