@@ -6,7 +6,9 @@ import dto.FinalizedSalesLog;
 
 public class Accounting {
 	LinkedList<FinalizedSalesLog> recordedSalesLogs;
-
+	/**
+	 * initializes a new Accounting object
+	 */
 	public Accounting() {
 		recordedSalesLogs = new LinkedList<FinalizedSalesLog>();
 	}
