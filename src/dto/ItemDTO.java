@@ -50,6 +50,7 @@ public class ItemDTO {
 	/**
 	 * returns if Object o equals this
 	 * @param o object to compare qeuality with
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof ItemDTO) {
