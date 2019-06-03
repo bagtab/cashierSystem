@@ -15,8 +15,8 @@ public class Inventory {
 	/**
 	 * returns matching itemDTO to matching itemID
 	 * 
-	 * @param itemID
-	 * @return ItemDTO
+	 * @param itemID id of item searched
+	 * @return ItemDTO matching the itemID
 	 */
 	public ItemDTO findItem(int itemID) {
 		ItemDTO item = database.get(itemID);
