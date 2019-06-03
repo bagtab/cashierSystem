@@ -76,6 +76,7 @@ public class Controller {
 
 		FinalizedSalesLog finalSalesLog = new FinalizedSalesLog(inPayment, getSalesDTO());
 		ReceiptAndReturn receiptAndReturn = new ReceiptAndReturn(register.endSale(finalSalesLog),inPayment.getAmount() - getCost());
+		cost.resetCost();
 		return receiptAndReturn;
 	}
 
